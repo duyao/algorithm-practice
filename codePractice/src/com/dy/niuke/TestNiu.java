@@ -39,5 +39,28 @@ public class TestNiu {
 		System.out.println(a1);
 	}
 	
+	@Test
+	public void test3_4(){
+		Niu3_4 niu3_4 = new Niu3_4();
+		int a[] = {1,2,3,4};
+		int b[] = {3,4,5,6};
+//		int a[] = {0,1,2};
+//		int b[] = {3,4,5};
+		int ans = niu3_4.find(a, 0, a.length-1, b, 0, b.length-1);
+		
+		System.out.println(ans);
+	}
+	
+	@Test
+	public void test4_1(){
+		Niu4_1 niu4_1 = new Niu4_1();
+		String string = "abc123321ab";
+		//String string = "abc1234321ab";
+		String reString = niu4_1.Manacher(string);
+		System.out.println(reString);
+		
+	}
+	
+	
 
 }
