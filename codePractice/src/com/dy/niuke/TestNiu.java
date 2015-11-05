@@ -61,6 +61,14 @@ public class TestNiu {
 		
 	}
 	
-	
+	@Test
+	public void test5_1(){
+		Niu5_1 niu5_1 = new Niu5_1();
+		String string = "ABC ABCDAB ABCDABCDABDE";
+		String match = "ABCDABD";
+		int res = niu5_1.KMP(string, match);
+		System.out.println(res);
+		
+	}
 
 }
