@@ -70,5 +70,18 @@ public class TestNiu {
 		System.out.println(res);
 		
 	}
+	
+	@Test
+	public void test5_2(){
+		Niu5_2 niu5_2 = new Niu5_2();
+		int[] a = {3,412,23,2,76,47,23,9,23,54,83};
+		int res = niu5_2.getMinKthByBFPRT(a, 2);
+		int[] ans = niu5_2.partition(a, 0, a.length-1, 23);
+		for (int i = 0; i < ans.length; i++) {
+			System.out.println(ans[i]);
+		}
+		//System.out.println(res);
+		
+	}
 
 }
