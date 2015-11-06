@@ -83,5 +83,18 @@ public class TestNiu {
 		//System.out.println(res);
 		
 	}
+	
+	
+	@Test
+	public void test5_2_1(){
+		Niu5_2_1 niu5_2_1 = new Niu5_2_1();
+		int[] a = {3,412,23,2,76,47,23,9,23,54,83};
+		int[] k = niu5_2_1.getMinKNumsByHeap(a, 4);
+		for (int i = 0; i < k.length; i++) {
+			System.out.println(k[i]);
+		}
+		
+		
+	}
 
 }
