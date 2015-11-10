@@ -96,5 +96,13 @@ public class TestNiu {
 		
 		
 	}
+	
+	public void test6_1(){
+		Niu6_1 niu6_1 = new Niu6_1();
+		int[] a = {3,1,3,4,2};
+		int k = niu6_1.missNum(a);
+		System.out.println(k);
+
+	}
 
 }
