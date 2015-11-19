@@ -1,7 +1,7 @@
 package com.dy.niuke;
 
 public class Niu8_2 {
-	public int coins1(int[] arr, int aim) {
+	public static  int coins1(int[] arr, int aim) {
 		if (arr == null || arr.length == 0 || aim < 0) {
 			return 0;
 		}
@@ -28,7 +28,7 @@ public class Niu8_2 {
 	}
 
 	// 使用map，减少重复计算
-	public int coins2(int[] arr, int aim) {
+	public static int coins2(int[] arr, int aim) {
 		if (arr == null || arr.length == 0 || aim < 0) {
 			return 0;
 		}
@@ -59,8 +59,8 @@ public class Niu8_2 {
 					// 该值map中还没有算过，因此要计算一下
 					res += f2(a, index + 1, aim - a[index] * i, map);
 				}
-				// 每次算完一个循环，更新map
-				map[index + 1][aim - a[index] * i] = res == 0 ? -1 : res;
+				// 每次算完一个循环，更新map,更新的此过程的map，即map[index][aim]
+				map[index][aim] = res == 0 ? -1 : res;
 			}
 		}
 		return res;
@@ -127,7 +127,7 @@ public class Niu8_2 {
 				//先要判断j-arr[i]是否越界
 				dp[i][j] = dp[i-1][j];
 				if(j-arr[i] >= 0){
-					dp[i][j] += dp[i-1][j-arr[i]];
+					dp[i][j] += dp[i][j-arr[i]];
 				}
 			}
 		}
@@ -137,9 +137,10 @@ public class Niu8_2 {
 	public static void main(String[] args) {
 		int[] arr = { 5, 10, 25, 1 };
 		int aim = 15;
-		// System.out.println(f1(arr, 0, aim));
-		String string = "fdsafdsa";
-		System.out.println(string.charAt(0));
+		System.out.println(coins1(arr, aim));
+		System.out.println(coins2(arr, aim));
+		System.out.println(coins3(arr, aim));
+		System.out.println(coins4(arr, aim));
 	}
 
 }
