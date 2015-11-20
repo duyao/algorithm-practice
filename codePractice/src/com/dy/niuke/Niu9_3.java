@@ -22,8 +22,8 @@ public class Niu9_3 {
 		for(int j = 1; j < row; j++){
 			dp[j][0] = dc*j;
 		}
-		for(int i = 2; i < row; i++){
-			for(int j= 2; j < col; j++){
+		for(int i = 1; i < row; i++){
+			for(int j= 1; j < col; j++){
 				//在3中取值找最小
 				//判断
 				if(chs1[i-1] == chs2[j-1]){
@@ -34,9 +34,9 @@ public class Niu9_3 {
 					dp[i][j] = dp[i-1][j-1]+rc;
  				}
 				//先0,i-1变为0,j-2然后加上j-1
-				dp[i][j]=Math.max(dp[i][j], dp[i][j-1]+ic);
+				dp[i][j]=Math.min(dp[i][j], dp[i][j-1]+ic);
 				//先0,i-1删除i-1得到0,i-2变为0,j-1
-				dp[i][j]=Math.max(dp[i][j], dp[i-1][j]+dc);
+				dp[i][j]=Math.min(dp[i][j], dp[i-1][j]+dc);
 			}
 		}
 		return dp[row-1][col-1];
