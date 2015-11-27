@@ -2,6 +2,8 @@ package com.dy.niuke;
 
 import java.util.Stack;
 
+import javax.swing.text.AbstractDocument.BranchElement;
+
 
 public class Niu11_2 {
 	
@@ -53,6 +55,7 @@ public class Niu11_2 {
 	
 	//只用空间复杂度O(1)
 	public static boolean isPalindrome2(Node head) {
+		boolean res = true;
 		if(head == null || head.next == null){
 			//链表为空或者只有一个元素
 			return true;
@@ -66,35 +69,63 @@ public class Niu11_2 {
 			nq = nq.next.next;
 		}
 
-		//两个节点单独判断
-		//将ns后面的链表反转
 		
+		//将ns后面的链表反转
 		Node prior = ns;
 		Node cur = ns.next;
+		//两个节点单独判断
+		if(cur == null){
+			//说明此链表中只有2个元素,直接返回不需要修复
+			return head.value == ns.value ? true: false;
+		}
+		//只有两个节点的时候，无nextNode
 		Node nextNode = cur.next;
+		//将中间的节点的后继设为空
 		ns.next = null;
 		while(cur != null) {
+			//反向指
 			cur.next = prior;
 			prior = cur;
 			cur = nextNode;
-			if(cur)//判空
+			//判空,因为cur为空，nextNode不存在
+			if(cur == null){
+				break;
+			}
 			nextNode = nextNode.next;
 		} 
 		
 		//结束后prior就是头结点
-		while(head != null && prior != null){
-			if(head.value != prior.value){
-				return false;
+		//head和prior不能破坏因为还要修复链表
+		ns = head;
+		cur = prior;
+		//判断是否是回文
+		while(ns != null && cur != null){
+			if(ns.value != cur.value){
+				res = false;
 			}
-			head = head.next;
-			prior = prior.next;
+			ns = ns.next;
+			cur = cur.next;
 		}
-		return true;
 		
-		
+
+		//修复链表
+		cur = prior.next;
+		//nextNode可能为空，当只有3个元素的时候，所以下面重置nextNode会判断
+		nextNode = cur.next;
+		prior.next = null;
+		while(cur != null){
+			cur.next = prior;
+			prior = cur;
+			cur = nextNode;
+			//判空,因为cur为空，nextNode不存在
+			if(cur == null){
+				break;
+			}
+			nextNode = nextNode.next;
+		}
+		return res;
 		
 	}
-	
 	
 	
 	public static void printLinkedList(Node node) {
@@ -109,29 +140,59 @@ public class Niu11_2 {
 	
 	public static void main(String[] args) {
 		Node head = null;
+		
+		System.out.print(isPalindrome1(head) + " | ");
+		printLinkedList(head);
+		System.out.print(isPalindrome2(head) + " | ");
+		printLinkedList(head);
+		System.out.println("=========================");
+
+		head = new Node(1);
+		System.out.print(isPalindrome1(head) + " | ");
+		printLinkedList(head);
+		System.out.print(isPalindrome2(head) + " | ");
+		printLinkedList(head);
+		System.out.println("=========================");
+
 		head = new Node(1);
 		head.next = new Node(2);
-		head.next.next = new Node(1);
-//		printLinkedList(head);
-//		System.out.print(isPalindrome1(head) + " | ");
+		System.out.print(isPalindrome1(head) + " | ");
 		printLinkedList(head);
-		System.out.println(isPalindrome2(head) + " | ");
+		System.out.print(isPalindrome2(head) + " | ");
+		printLinkedList(head);
+		System.out.println("=========================");
+
+		head = new Node(1);
+		head.next = new Node(1);
+		System.out.print(isPalindrome1(head) + " | ");
+		printLinkedList(head);
+		System.out.print(isPalindrome2(head) + " | ");
+		printLinkedList(head);
+		System.out.println("=========================");
+		
+		head = new Node(1);
+		head.next = new Node(2);
+		head.next.next = new Node(3);
+		System.out.print(isPalindrome1(head) + " | ");
+		printLinkedList(head);
+		System.out.print(isPalindrome2(head) + " | ");
+		printLinkedList(head);
 		System.out.println("=========================");
 
 		head = new Node(1);
 		head.next = new Node(2);
 		head.next.next = new Node(3);
 		head.next.next.next = new Node(4);
-		head.next.next.next.next = new Node(1);
-		head.next.next.next.next.next = new Node(1);
+		head.next.next.next.next = new Node(5);
+		head.next.next.next.next.next = new Node(5);
 		head.next.next.next.next.next.next = new Node(4);
 		head.next.next.next.next.next.next.next = new Node(3);
 		head.next.next.next.next.next.next.next.next = new Node(2);
 		head.next.next.next.next.next.next.next.next.next = new Node(1);
-		printLinkedList(head);
 		System.out.print(isPalindrome1(head) + " | ");
 		printLinkedList(head);
-		System.out.println(isPalindrome2(head) + " | ");
+		System.out.print(isPalindrome2(head) + " | ");
+		printLinkedList(head);
 		System.out.println("=========================");
 	}
 
