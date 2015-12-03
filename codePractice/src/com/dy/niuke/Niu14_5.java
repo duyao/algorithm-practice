@@ -32,8 +32,8 @@ public class Niu14_5 {
 	}
 	
 	public static void main(String[] args) {
-		int[] a = {5,5,3,2,6,4,3};
-		int k = 15;
+		int[] a = {-5,-5,3,2,6,-4,3};
+		int k = -10;
 		System.out.println(getKLen(a,k));
 	}
 }
