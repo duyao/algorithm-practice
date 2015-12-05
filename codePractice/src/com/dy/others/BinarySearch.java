@@ -34,6 +34,7 @@ public class BinarySearch {
 		while (left < right) {
 			mid = (left + right) / 2;
 			if (a[mid] >= x) {
+				//等于号在这里的原因是查找第一个等于x的，那么数字应该在最左边，因此要放在左区间中
 				// 在区间[left,mid)找
 				//因为是左闭右开区间，所以right=mid
 				right = mid;
@@ -56,16 +57,18 @@ public class BinarySearch {
 		//避免出现left=right-1出现死循环
 		while (left < right) {
 			mid = (left + right) / 2;
-			//第一个大于x的元素，没有等号
+			//第一个大于x的元素，等号放在右区间
 			if (a[mid] > x) {
 				// 在区间[left,mid)找
 				right = mid;
 			} else {
+				//查找第一个大于x的，那么该值应该在最右边，因此在该区间
 				// 在区间[mid+1,right)找
 				left = mid + 1;
 			}
 		}
 		// 找不到
+		//因为找不到返回值是左边，因此等于的情况应该归在左边
 		return left;
 	}
 

@@ -84,9 +84,9 @@ public class Niu15_2 {
 		 int k = -2;
 		 System.out.println(maxLength(arr, k));
 
-//		int[] a1 = { 0, 1, 1, 1, 2, 2, 3, 3, 3, 4 };
-//		System.out.println(getIndex(a1, 10));
-//		System.out.println(getIndex1(a1, 4));
+		int[] a1 = generateRandomArray(5, 15);
+		printArray(a1);
+		System.out.println(maxLength(a1, 3));
 	}
 
 }
