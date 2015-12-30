@@ -2,6 +2,11 @@ package com.dy.others;
 
 import java.util.ArrayList;
 
+/**
+ * @author dy
+ * 单源最短路径
+ *
+ */
 public class Dijksstra {
 	//邻接矩阵
 	public static int[] matrix(int[][] g, int s){
